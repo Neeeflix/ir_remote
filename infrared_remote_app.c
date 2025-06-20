@@ -547,14 +547,14 @@ int32_t infrared_remote_app(void* p) {
 		}
 		if(app->external){
 			// Enable external and turn on 5V
-			furi_hal_infrared_set_debug_out(1);
+			furi_hal_infrared_set_tx_output(1);
 			for(int i = 0; i < 5 && !furi_hal_power_is_otg_enabled(); i++) {
 				furi_hal_power_enable_otg();
 				furi_delay_ms(10);
 			}
 		}else{
 			// Enable internal and turn off 5v
-			furi_hal_infrared_set_debug_out(0);
+			furi_hal_infrared_set_tx_output(0);
 			if(furi_hal_power_is_otg_enabled()) furi_hal_power_disable_otg();
 		}
 		// Fix orientation issue
